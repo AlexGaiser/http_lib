@@ -13,7 +13,7 @@ app.listen(PORT);
 console.log(`server listening on port ${PORT}`);
 
 app.get('/test', (req, res) => {
-  console.log(req.url);
+  console.log(req);
   res.json({
     response: 'success!',
   });
