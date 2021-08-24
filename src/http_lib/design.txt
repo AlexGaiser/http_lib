@@ -1,0 +1,21 @@
+To create a HTTP library we will need:
+
+A mechanism to manage socket connections:
+Will need to: 
+  Create
+  Destroy
+  Write to
+  Manage buffer stream?
+
+HTTP request builder
+Responsible for taking a simple object and converting it into the 
+formatted string string required for sending the request
+bodies may be large so may need to manage buffering of bodies
+
+Request Library (abstract)
+  Simple class methods for sending requests
+  Support major HTTP methods
+  Mimic Axios interface at highest level (config object with methods, params etc)
+  Should support Promises (MVP +)
+  
+
