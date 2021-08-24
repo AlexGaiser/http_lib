@@ -26,7 +26,7 @@ socket.on('connect', (a) => {
     Accept: application/json\r\n
     Accept-Encoding: gzip, deflate, br\r\n
     User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)\r\n
-    \r\n
+    \r\n`,
   );
 });
 // socket.destroy();
