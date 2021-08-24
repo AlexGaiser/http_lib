@@ -19,16 +19,13 @@ socket.on('data', (data) => {
 
 socket.on('connect', (a) => {
   console.log('connected');
-  console.log('writing to sockets');
   socket.write(
-    `GET /test HTTP/1.1\r\n
-    Host: localhost\r\n
-    Accept: application/json\r\n
-    Accept-Encoding: gzip, deflate, br\r\n
-    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)\r\n
-    \r\n`,
+    `GET /test HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Length: 28\r\nAccept-Encoding: gzip, deflate, br\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)\r\n\r\n{"text":"this is a comment"}`,
   );
 });
 // socket.destroy();
 
-// http.get('http://localhost:3001/test');
+http.get('http://localhost:3002/test');
+// const req = http.request('http://localhost:3002/test');
+
+// console.log(req.getHeader('User-Agent'));
