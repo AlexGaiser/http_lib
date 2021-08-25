@@ -1,0 +1,15 @@
+Example raw GET request
+
+GET /test HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Host: localhost
+Content-Length: 28
+Accept-Encoding: gzip, deflate, br
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)
+
+{"text":"this is a comment"}
+
+
+Example Raw GET with all chars
+`GET /test HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Length: 28\r\nAccept-Encoding: gzip, deflate, br\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)\r\n\r\n{"text":"this is a comment"}`;

@@ -1,31 +1,36 @@
-import http from 'http';
-import net from 'net';
+import { RequestConfig } from './http_client/types';
+import { buildRawHTTPHeaders } from './http_parser/outgoing';
+import {
+  createSocketConnection,
+  writeToSocket,
+} from './socket.service';
 
-/**
- http module in js uses ClientRequest class to send requests
- it uses the net Module and Socket class to create the connection
- To make an http request we need to do the following:
-
-
-*/
-
-const socket = net.createConnection({
-  port: 3002,
+const socket = createSocketConnection({
   host: 'localhost',
-});
-socket.on('data', (data) => {
-  console.log('data', data.toString());
+  port: 3002,
 });
 
-socket.on('connect', (a) => {
-  console.log('connected');
-  socket.write(
-    `GET /test HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Length: 28\r\nAccept-Encoding: gzip, deflate, br\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)\r\n\r\n{"text":"this is a comment"}`,
-  );
+socket.on('close', () => {
+  console.log('closing');
 });
-// socket.destroy();
+const write = writeToSocket(socket);
+const config: RequestConfig = {
+  url: 'http://localhost:3002/test',
+  method: 'GET',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    Host: 'localhost',
+    'Content-Length': 28,
+    'Accept-Encoding': 'gzip, deflate, br',
+    'User-Agent':
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)',
+  },
+  data: { text: 'this is a comment' },
+};
+const data_old = `GET /test HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Length: 28\r\nAccept-Encoding: gzip, deflate, br\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)\r\n\r\n{"text":"this is a comment"}`;
+const data =
+  buildRawHTTPHeaders(config) +
+  '\r\n\r\n{"text":"this is a comment"}';
 
-http.get('http://localhost:3002/test');
-// const req = http.request('http://localhost:3002/test');
-
-// console.log(req.getHeader('User-Agent'));
+write(data);

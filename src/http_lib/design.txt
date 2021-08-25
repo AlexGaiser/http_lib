@@ -12,10 +12,32 @@ Responsible for taking a simple object and converting it into the
 formatted string string required for sending the request
 bodies may be large so may need to manage buffering of bodies
 
+HTTP Parser
+will need to parse http request
+will potentially need to support parsing and reading partial chunks
+
+
 Request Library (abstract)
   Simple class methods for sending requests
   Support major HTTP methods
   Mimic Axios interface at highest level (config object with methods, params etc)
   Should support Promises (MVP +)
   
+
+Design philosophy:
+
+Layer 1
+User should be able to either pass in a request as a config or invoke
+different methods on the object to make the request
+
+Layer 2
+Request object created by user gets converted into raw http request headers
+
+
+Layer 3
+Socket is opened and raw information is written to the socket
+Socket is closed here
+
+
+
 
