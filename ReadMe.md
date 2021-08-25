@@ -6,7 +6,9 @@ The purpose of this repository is to create a basic http client starting from as
 
 Because of the way Node.js has been designed, there is a limit to how low we can go in this implementation. Some features (such as opening a TCP connection) are natively implemented in C/C++. This project is an exercise in creating an HTTP client starting at as low a level as possible in Node, relying on as few of the native Node.js abstractions as possible.
 
-This is an academic exercise for the purpose of understanding how Node works under the hood and how many of the abstractions we take for granted when making HTTP network calls actually work. 
+This is strictly an academic exercise for the purpose of understanding how Node works under the hood and how many of the abstractions we take for granted when making HTTP network calls actually work. 
+
+In Reality, Node.js implements a large part of the low-level logic related to HTTP in C/C++ code.
 
 ## Requirements:
 
