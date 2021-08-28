@@ -1,0 +1,4 @@
+These files represent a series of functions that together form
+
+Layer 2 of the design model. This layer is where Request objects from the 
+http_client are converted into properly formatted http messages

@@ -1,0 +1,6 @@
+This folder holds files related to abstraction layer 3
+
+This layer is responsible for creating/managing the TCP connections and 
+writing data to the target server
+
+This is the lowest level of abstraction we can get to in Node without dipping into C/C++
