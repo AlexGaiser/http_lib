@@ -1,6 +1,7 @@
 import { RequestConfig, Method } from '../http_client/types';
 import { CRLF } from '../constants';
 import { URL } from 'url';
+import { makeUrlString } from './url.service';
 
 export type RawHTTPOptions = {
   host: string;
@@ -28,15 +29,28 @@ function makeHeaderString(header: string, value: string | number) {
   return `${header}: ${value}`;
 }
 
+function makeRequestBody(requestData: any) {
+  return JSON.stringify(requestData);
+}
+
 function getRawHTTPOptions(config: RequestConfig): RawHTTPOptions {
-  const url = new URL(config.url);
-  url;
+  const url = makeUrlString(config);
+
+  const urlObj = new URL(url);
   const options = {
-    host: url.hostname,
-    path: `${url.pathname || ''}${url.search || ''}`,
+    host: urlObj.hostname,
+    path: `${urlObj.pathname || ''}${urlObj.search || ''}`,
     method: config.method,
   };
+
   return options;
+}
+
+export function buildRawHTTPRequest(config: RequestConfig): string {
+  const rawHeaders = buildRawHTTPHeaders(config);
+  const data = makeRequestBody(config.data);
+
+  return `${rawHeaders}${CRLF}${CRLF}${data}`;
 }
 
 function makeStartLine({

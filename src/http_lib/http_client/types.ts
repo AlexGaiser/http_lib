@@ -24,7 +24,10 @@ export interface RequestConfig {
   headers: {
     [header: string]: string | number;
   };
-  data: any;
+  params?: {
+    [param: string]: string | number | boolean;
+  };
+  data?: any;
   url: string;
   method: Method;
 }
