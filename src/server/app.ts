@@ -1,6 +1,13 @@
+/**
+This is an HTTP server created using express
+It will respond with dummy data and log out the headers, query params,
+and body sent to it. It for testing the validity of the http requests 
+sent from the HTTP client which is the subject of this repository
+*/
+
 import express from 'express';
 import config from './config';
-import { POST_DATA } from './data';
+import { DUMMY_DATA } from './data';
 const args = process.argv.slice(2);
 
 const [userPort] = args;
@@ -23,12 +30,10 @@ app.get('/test', (req, res) => {
 });
 
 app.post('/test', (req, res) => {
-  // console.log('POST', req);
-
   console.log('headers', req.headers);
   console.log('query', req.query);
   console.log('body', req.body);
   res.json({
-    response: POST_DATA,
+    response: DUMMY_DATA,
   });
 });

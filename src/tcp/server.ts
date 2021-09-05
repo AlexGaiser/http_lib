@@ -1,5 +1,8 @@
 import net from 'net';
 
+// this is essentially the lowest level server possible in node.
+// created so we can see all data coming in to our socket
+
 const server = net.createServer((connection) => {
   console.log('new connection');
 

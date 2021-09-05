@@ -1,3 +1,9 @@
+/**
+This is a completely open server that can be run for testing purposes. 
+It will log out all incoming data and connections sent to the server and sends
+a generic http message in response
+*/
+
 import * as net from 'net';
 import config from './config';
 const server = net.createServer();

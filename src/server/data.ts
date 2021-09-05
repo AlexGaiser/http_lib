@@ -1,4 +1,4 @@
-export const POST_DATA = [
+export const DUMMY_DATA = [
   {
     userId: 1,
     id: 1,
