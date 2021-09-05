@@ -22,10 +22,6 @@ export const createHTTPConnection = (httpConfig: {
   return socket;
 };
 
-const handleSocketData = (socket) => {
-  const { onSocketData } = getSocketEventFuncs(socket);
-};
-
 export function dispatchHTTPRequest(httpConfig) {
   const conn = createHTTPConnection(httpConfig);
   const { onSocketClose, onSocketData, endConnection } =
