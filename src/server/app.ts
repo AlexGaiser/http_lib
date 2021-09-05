@@ -1,6 +1,6 @@
 import express from 'express';
 import config from './config';
-
+import { POST_DATA } from './data';
 const args = process.argv.slice(2);
 
 const [userPort] = args;
@@ -29,6 +29,6 @@ app.post('/test', (req, res) => {
   console.log('query', req.query);
   console.log('body', req.body);
   res.json({
-    response: 'success!',
+    response: POST_DATA,
   });
 });

@@ -52,11 +52,53 @@ function makeRequestBody(config: HTTPConfig) {
   return JSON.stringify(config.data);
 }
 
+export function parseResStartline(startLine: string) {
+  const [protocol, status, message] = startLine.split(' ');
+  return {
+    protocol: protocol.trim(),
+    status: parseInt(status.trim()),
+    message: message.trim(),
+  };
+}
+
+export function getHeaderAndBodyString(str: string): string[] {
+  return str.split(CRLF + CRLF);
+}
+
+export function parseHeaderString(str: string) {
+  const headersArr = str.split(CRLF);
+  const startLine = headersArr[0];
+  const headers = makeHeaderObject(headersArr.slice(1));
+  headers['Content-Length'] = parseInt(headers['Content-Length']);
+  return {
+    ...parseResStartline(startLine),
+    headers,
+  };
+}
+
+export function getHeadersFromString(headerString: string) {
+  return parseHeaderString(headerString);
+}
+
+function makeHeaderObject(headerStrArr: string[]) {
+  return headerStrArr.reduce((obj, v) => {
+    const [key, value] = getKeyValueFromString(v);
+    obj[key] = value;
+    return obj;
+  }, {});
+}
+
+export function getKeyValueFromString(str: string) {
+  const [key, value] = str.split(':');
+  return [key.trim(), value.trim()];
+}
+
 // tightly coupled, should have another layer in case we want to change Request config
 // violation of SSR, responsible for building request && making body
 export function buildRawHTTPRequest(config: HTTPConfig): string {
-  const rawHeaders = buildRawHTTPHeaders(config);
   const data = makeRequestBody(config);
+
+  const rawHeaders = buildRawHTTPHeaders(config);
 
   return `${rawHeaders}${CRLF}${CRLF}${data}`;
 }

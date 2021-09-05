@@ -28,6 +28,6 @@ export const getSocketEventFuncs = (socket: Socket) => {
   return {
     onSocketClose: handleSocketClose(socket),
     onSocketData: handleSocketData(socket),
-    endSocketConnection: endSocketConnection(socket),
+    endConnection: endSocketConnection(socket),
   };
 };
