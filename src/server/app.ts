@@ -20,12 +20,11 @@ app.listen(PORT);
 console.log(`server listening on port ${PORT}`);
 
 app.get('/test', (req, res) => {
-  console.log('GET', req);
   console.log('headers', req.headers);
   console.log('query', req.query);
   console.log('body', req.body);
   res.json({
-    response: 'success!',
+    response: DUMMY_DATA,
   });
 });
 
@@ -37,3 +36,21 @@ app.post('/test', (req, res) => {
     response: DUMMY_DATA,
   });
 });
+
+app.put('/test', (req, res) => {
+  console.log('headers', req.headers);
+  console.log('query', req.query);
+  console.log('body', req.body);
+  res.json({
+    response: DUMMY_DATA,
+  });
+});
+
+app.delete('/test', (req, res) => {
+  console.log('headers', req.headers);
+  console.log('query', req.query);
+  console.log('body', req.body);
+  res.json({
+    response: DUMMY_DATA,
+  });
+});)
