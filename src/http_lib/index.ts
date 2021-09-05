@@ -1,22 +1,7 @@
+// import http from 'http';
+import { request } from './http_client/http_client';
 import { RequestConfig } from './http_client/types';
-import {
-  buildRawHTTPHeaders,
-  buildRawHTTPRequest,
-} from './http_parser/http_parser';
-import {
-  createSocketConnection,
-  writeToSocket,
-} from './socket.service';
 
-const socket = createSocketConnection({
-  host: 'localhost',
-  port: 3002,
-});
-
-socket.on('close', () => {
-  console.log('closing');
-});
-const write = writeToSocket(socket);
 const config: RequestConfig = {
   url: 'http://localhost:3002/test',
   method: 'POST',
@@ -36,9 +21,4 @@ const config: RequestConfig = {
   },
   data: { text: 'this is a comment' },
 };
-const data_old = `GET /test HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Length: 28\r\nAccept-Encoding: gzip, deflate, br\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)\r\n\r\n{"text":"this is a comment"}`;
-const data = buildRawHTTPRequest(config);
-// buildRawHTTPHeaders(config) +
-// '\r\n\r\n{"text":"this is a comment"}';
-
-write(data);
+const req = request(config);

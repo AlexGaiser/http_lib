@@ -6,3 +6,8 @@ exposed to the user.
 This layer is where we expose a simple and easy to use interface for the user 
 It is also responsible for making sure user input is validated and put into a predictable
 format other layers can use.
+
+This layer needs to have knowledge of the underlying layers structures. 
+
+We will need adaptors to convert configs into things other, lower layers can consumer
+

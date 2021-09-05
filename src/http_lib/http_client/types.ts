@@ -28,6 +28,19 @@ export interface RequestConfig {
     [param: string]: string | number | boolean;
   };
   data?: any;
+  port?: number;
   url: string;
   method: Method;
+}
+
+export interface HTTPConfig {
+  host: string;
+  port: number;
+  data: any;
+  path: string;
+  method: Method;
+  headers: {
+    [header: string]: string | number;
+  };
+  url: string;
 }

@@ -25,7 +25,7 @@ socket.on('connect', (a) => {
 });
 // socket.destroy();
 
-http.get('http://localhost:3002/test');
+http.get('http://google.com');
 // const req = http.request('http://localhost:3002/test');
 
 // console.log(req.getHeader('User-Agent'));

@@ -1,20 +1,48 @@
-import { RequestConfig, Method } from '../http_client/types';
+import {
+  RequestConfig,
+  Method,
+  HTTPConfig,
+} from '../http_client/types';
 import { CRLF } from '../constants';
 import { URL } from 'url';
-import { makeUrlString } from './url.service';
+import {
+  getHostFromURL,
+  getPathFromURL,
+  getPortFromURL,
+  makeUrlString,
+} from './url.service';
 
 export type RawHTTPOptions = {
   host: string;
   path: string;
-  port?: string;
+  port: string;
   method: Method;
+  data: string;
 };
 
-export const buildRawHTTPHeaders = (config: RequestConfig) => {
+export const getHTTPConfig = (config: RequestConfig): HTTPConfig => {
+  const { headers, data, url, method } = config;
+  const fullURL = makeUrlString(config);
+  const host = getHostFromURL(url);
+  const port = getPortFromURL(url) || 80;
+  const path = getPathFromURL(url);
+  const httpConfig: HTTPConfig = {
+    headers,
+    data,
+    host,
+    port,
+    path,
+    url: fullURL,
+    method,
+  };
+  return httpConfig;
+};
+
+export const buildRawHTTPHeaders = (config: HTTPConfig) => {
   const { headers } = config;
 
   const headersArr = [];
-  const httpOptions = getRawHTTPOptions(config);
+  const httpOptions = config;
   const startLine = makeStartLine(httpOptions);
 
   headersArr.push(startLine);
@@ -29,26 +57,15 @@ function makeHeaderString(header: string, value: string | number) {
   return `${header}: ${value}`;
 }
 
-function makeRequestBody(requestData: any) {
-  return JSON.stringify(requestData);
+function makeRequestBody(config: HTTPConfig) {
+  return JSON.stringify(config.data);
 }
 
-function getRawHTTPOptions(config: RequestConfig): RawHTTPOptions {
-  const url = makeUrlString(config);
-
-  const urlObj = new URL(url);
-  const options = {
-    host: urlObj.hostname,
-    path: `${urlObj.pathname || ''}${urlObj.search || ''}`,
-    method: config.method,
-  };
-
-  return options;
-}
-
-export function buildRawHTTPRequest(config: RequestConfig): string {
+// tightly coupled, should have another layer in case we want to change Request config
+// violation of SSR, responsible for building request && making body
+export function buildRawHTTPRequest(config: HTTPConfig): string {
   const rawHeaders = buildRawHTTPHeaders(config);
-  const data = makeRequestBody(config.data);
+  const data = makeRequestBody(config);
 
   return `${rawHeaders}${CRLF}${CRLF}${data}`;
 }

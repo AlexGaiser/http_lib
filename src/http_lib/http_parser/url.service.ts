@@ -1,5 +1,5 @@
 import { RequestConfig } from '../http_client/types';
-
+import { URL } from 'url';
 export type QueryParamsObject = {
   [param: string]: string | number | boolean;
 };
@@ -25,6 +25,19 @@ export const makeQueryParamStr = (
     }, [])
     .join('&');
 };
+
+export function getHostFromURL(url: string): string {
+  return new URL(url).hostname;
+}
+
+export function getPortFromURL(url: string): number {
+  return parseInt(new URL(url).port);
+}
+
+export function getPathFromURL(url: string): string {
+  const urlObj = new URL(url);
+  return `${urlObj.pathname || ''}${urlObj.search || ''}`;
+}
 
 export const makeUrlString = (config: RequestConfig): string => {
   const baseUrl = config.url;
