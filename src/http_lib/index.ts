@@ -21,4 +21,4 @@ const config: RequestConfig = {
   },
   data: { text: 'this is a comment' },
 };
-const req = request(config);
+const req = request(config).then((data) => console.log(data));
