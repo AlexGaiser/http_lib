@@ -4,7 +4,6 @@ import {
   HTTPConfig,
 } from '../http_client/types';
 import { CRLF } from '../constants';
-import { URL } from 'url';
 import {
   getHostFromURL,
   getPathFromURL,
