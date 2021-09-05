@@ -11,14 +11,6 @@ import {
   makeUrlString,
 } from './url.service';
 
-export type RawHTTPOptions = {
-  host: string;
-  path: string;
-  port: string;
-  method: Method;
-  data: string;
-};
-
 export const getHTTPConfig = (config: RequestConfig): HTTPConfig => {
   const { headers, data, url, method } = config;
   const fullURL = makeUrlString(config);
