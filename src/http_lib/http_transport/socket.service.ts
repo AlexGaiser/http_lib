@@ -1,11 +1,10 @@
-import { ConnectOpts, Socket } from 'net';
+import net, { ConnectOpts, Socket } from 'net';
 import { SocketConnectOpts } from 'node:net';
 
 export const createSocketConnection = (
   options: SocketConnectOpts,
 ): Socket => {
-  const socket = new Socket().connect(options);
-
+  const socket = net.createConnection(options);
   return socket;
 };
 
@@ -18,7 +17,7 @@ export const handleSocketEvent =
     return socket.on(event, listener);
   };
 
-export const endSocketConnection = (socket: Socket) => {
+export const endSocketConnection = (socket: Socket) => () => {
   return socket.end();
 };
 

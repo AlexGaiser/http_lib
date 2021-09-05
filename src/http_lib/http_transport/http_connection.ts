@@ -13,8 +13,9 @@ export const createHTTPConnection = (httpConfig: {
   const { host, port } = httpConfig;
 
   const socket = createSocketConnection({ host, port });
+
   const { onSocketClose, onSocketData } = getSocketEventFuncs(socket);
   onSocketClose(() => console.log('closing'));
-  onSocketData((data) => console.log(data));
+  onSocketData((data) => console.log('data', data.toString()));
   return socket;
 };
