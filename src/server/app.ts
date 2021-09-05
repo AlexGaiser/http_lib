@@ -53,4 +53,4 @@ app.delete('/test', (req, res) => {
   res.json({
     response: DUMMY_DATA,
   });
-});)
+});
