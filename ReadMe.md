@@ -2,24 +2,28 @@
 
 ## Description
 
-The purpose of this repository is to create a basic http client starting from as low a level as possible in Node.js
+The purpose of this repository is to create a basic http client at low a level as possible in Node.js
 
 Because of the way Node.js has been designed, there is a limit to how low we can go in this implementation. Some features (such as opening a TCP connection) are natively implemented in C/C++. This project is an exercise in creating an HTTP client starting at as low a level as possible in Node, relying on as few of the native Node.js abstractions as possible.
 
 This is strictly an academic exercise for the purpose of understanding how Node works under the hood and how many of the abstractions we take for granted when making HTTP network calls actually work. 
 
-In Reality, Node.js implements a large part of the low-level logic related to HTTP in C/C++ code.
+In addition, this is an exercise in creating an easy-to-use HTTP client. The client interface takes inspiration from Axios.
+
+In reality, Node.js implements a large part of the low-level logic related to HTTP in C/C++ code.
 
 ## Requirements:
 
 To create an HTTP request the client must: 
 
-1. Open a TCP connection to the correct address and port
-2. Send the properly formatted data
-3. Receive the response from the target HTTP server
-4. Close the connection (For MVP+ we may add keep-alive mechanism)
-
-## HTTP Request Details
+1. Take a user's configuration
+2. Use that configuration to create the HTTP headers
+3. Handle user's search parameters
+4. Format the HTTP request body
+5. Open a TCP connection to the correct address and port
+6. Send the properly formatted HTTP request
+7. Receive the response from the target HTTP server
+8. Close the connection when the server is done sending data
 
 ### Request syntax
 
@@ -32,7 +36,15 @@ A client sends  _request messages_  to the server, which consist of:
 
 In the HTTP/1.1 protocol, all header fields except  _Host_  are optional.
 
-**Raw HTTP example:**
+**Anatomy of an HTTP Request:**
 ```
 
 ```
+
+## Additional Features
+
+This repository also includes sources I used to learn more about how Node.js interacts with HTTP and TCP/IP sockets. It includes sources that explain how/where/why Node.js dives into the C/C++ layer.
+
+I have included the test servers I created while developing this project. They were useful for understanding the different types of protocols as well as how the socket connection layer works. 
+
+I used an Express server to validate the HTTP requests sent by the client. 
