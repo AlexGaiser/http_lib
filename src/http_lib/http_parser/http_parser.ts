@@ -97,10 +97,23 @@ export function getKeyValueFromString(str: string) {
 // violation of SSR, responsible for building request && making body
 export function buildRawHTTPRequest(config: HTTPConfig): string {
   const data = makeRequestBody(config);
-
+  const filledInHeaders = fillInHeaders(config, data);
+  config.headers = filledInHeaders;
   const rawHeaders = buildRawHTTPHeaders(config);
 
   return `${rawHeaders}${CRLF}${CRLF}${data}`;
+}
+
+function fillInHeaders(config: HTTPConfig, data: string) {
+  const fillInHeaders = { ...config.headers };
+  if (!fillInHeaders['Content-Length']) {
+    fillInHeaders['Content-Length'] = data.length;
+  }
+  if (!fillInHeaders['Host']) {
+    fillInHeaders['Host'] = config.host;
+  }
+
+  return fillInHeaders;
 }
 
 function makeStartLine({

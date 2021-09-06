@@ -21,9 +21,7 @@ export type Method =
   | 'UNLINK';
 
 export interface RequestConfig {
-  headers: {
-    [header: string]: string | number;
-  };
+  headers: HTTPHeaders;
   params?: {
     [param: string]: string | number | boolean;
   };
@@ -33,14 +31,14 @@ export interface RequestConfig {
   method: Method;
 }
 
+export type HTTPHeaders = { [header: string]: string | number };
+
 export interface HTTPConfig {
   host: string;
   port: number;
   data: any;
   path: string;
   method: Method;
-  headers: {
-    [header: string]: string | number;
-  };
+  headers: HTTPHeaders;
   url: string;
 }

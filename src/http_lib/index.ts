@@ -11,14 +11,12 @@ const config: RequestConfig = {
     bool: true,
   },
   headers: {
-    Accept: '*/*',
+    Accept: 'application/json',
     'Content-Type': 'application/json',
-    Host: 'www.google.com',
-    'Content-Length': 28,
     'Accept-Encoding': 'gzip, deflate, br',
     'User-Agent':
       'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)',
   },
-  data: { text: 'this is a comment' },
+  data: { text: 'this is a comment  next' },
 };
 const req = request(config).then((data) => console.log(data));

@@ -5,7 +5,7 @@ a generic http message in response
 */
 
 import * as net from 'net';
-import config from './config';
+import config from '../server/config';
 const server = net.createServer();
 
 const args = process.argv.slice(2);

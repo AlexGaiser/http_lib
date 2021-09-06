@@ -1,7 +1,7 @@
-import { RSA_NO_PADDING } from 'constants';
 import { Socket, SocketConnectOpts } from 'net';
-import { json } from 'stream/consumers';
 import { HTTPConfig } from '../http_client/types';
+import contentTypeParser from 'content-type-parser';
+
 import {
   buildRawHTTPRequest,
   getHeaderAndBodyString,
@@ -33,7 +33,9 @@ export function dispatchHTTPRequest(httpConfig) {
   const message = buildRawHTTPRequest(httpConfig);
   write(message);
 
+  // will eventually need to be able to handle chunked/multipart data
   onSocketData((data) => {
+    // this implementation is for unchunkedData
     const [headerString, body] = getHeaderAndBodyString(
       data.toString(),
     );
@@ -46,11 +48,8 @@ export function dispatchHTTPRequest(httpConfig) {
     }
     if (res.headers && body) {
       const contentType = res.headers['Content-Type'];
-      if (contentType === 'application/json') {
-        res.data = JSON.parse(body);
-      } else if (contentType === 'text/html; charset=UTF-8') {
-        res.data = body;
-      }
+      res.data = handleContentType(contentType, body);
+
       if (body.length === res.contentLength) {
         endConnection();
       }
@@ -60,4 +59,35 @@ export function dispatchHTTPRequest(httpConfig) {
     onSocketClose(() => resolve(res)),
   );
   return promise;
+}
+
+// in the future this will be replaced by a more data agnostic method
+const contentHandlers = {
+  'application/json': handleJSON,
+  'text/html': handleHTML,
+};
+
+function handleContentType(type: string, data: string) {
+  const [mimeType, options] = parseContentType(type);
+  console.log(mimeType);
+  const handlerFunc = contentHandlers[mimeType];
+  if (handlerFunc) return handlerFunc(data);
+  else {
+    return data;
+  }
+}
+
+function handleJSON(data: string) {
+  return JSON.parse(data);
+}
+
+function parseContentType(type: string) {
+  const ctObj = contentTypeParser(type);
+  const mimeType = [ctObj.type, ctObj.subtype].join('/');
+
+  return [mimeType];
+}
+
+function handleHTML(data: string) {
+  return data;
 }
