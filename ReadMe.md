@@ -57,6 +57,14 @@ A client sends  _request messages_  to the server, which consist of:
 
 In the HTTP/1.1 protocol, all header fields except  _Host_  are optional.
 
+**Important Note:** All sections of the HTTP request must be separated by the characters `\r\n`. The body section is separated from the headers by two sets of these characters: `\r\n\r\n`
+
+```
+`GET /test HTTP/1.1\r\nHost: localhost\r\nAccept: application/json\r\nContent-Type: application/json\r\nContent-Length: 28\r\nAccept-Encoding: gzip, deflate, br\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0)\r\n\r\n{"text":"this is a comment"}`;
+
+```
+Note that in Javascript if we use backticks and formatting with spaces/newlines characters, the request will be malformed. The line breaks need to be `\r\n` **and nothing else**. Otherwise, the request will be malformed.
+
 ## Anatomy of an HTTP Request
 ![anatomy of an http request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages/http_response_headers3.png)
 
