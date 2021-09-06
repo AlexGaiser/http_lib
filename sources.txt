@@ -10,6 +10,7 @@ https://www.w3.org/People/Frystyk/thesis/TcpIp.html
 https://betterprogramming.pub/the-anatomy-of-an-http-request-728a469ecba9
 https://notes.eatonphil.com/web-server-basics-http-and-sockets.html
 https://www.codementor.io/@ziad-saab/let-s-code-a-web-server-from-scratch-with-nodejs-streams-h4uc9utji
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent
 
 -how an http session works:
 https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_session
