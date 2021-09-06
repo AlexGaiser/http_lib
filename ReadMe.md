@@ -10,6 +10,22 @@ Because of the way Node.js has been designed, there is a limit to how low we can
 
 In reality, Node.js implements a large part of the low-level logic related to HTTP in C/C++ code and many of the features I have implemented here will never need to be touched in the normal course of Node.js development. 
 
+
+- [HTTP Library](#http-library)
+  - [Description](#description)
+  - [Requirements:](#requirements)
+  - [How to Use](#how-to-use)
+  - [Request syntax](#request-syntax)
+  - [Anatomy of an HTTP Request](#anatomy-of-an-http-request)
+  - [Sources](#sources)
+    - [TCP Connections](#tcp-connections)
+    - [HTTP](#http)
+    - [How an http session works:](#how-an-http-session-works)
+    - [Node](#node)
+    - [HTTP Server](#http-server)
+    - [Helpful Implementations](#helpful-implementations)
+  - [Additional Features](#additional-features)
+  - [What I learned](#what-i-learned)
 ## Requirements:
 
 To be a fully featured HTTP client this project must: 
