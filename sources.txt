@@ -16,6 +16,7 @@ https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP_session
 
 Node
 https://github.com/nodejs/node/tree/v16.7.0/lib
+https://medium.com/swlh/node-js-c-da454904811f
 
 HTTP Server
 https://www.codementor.io/@ziad-saab/let-s-code-a-web-server-from-scratch-with-nodejs-streams-h4uc9utji
