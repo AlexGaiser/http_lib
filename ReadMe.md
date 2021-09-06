@@ -61,7 +61,7 @@ In the HTTP/1.1 protocol, all header fields except  _Host_  are optional.
 ![anatomy of an http request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages/http_response_headers3.png)
 
 ## Sources
-[Helpful Links in Sources.txt File](https://github.com/AlexGaiser/http_lib/edit/master/sources.txt)
+[Helpful Links in Sources.txt File](https://github.com/AlexGaiser/http_lib/edit/master/Sources.md)
 
 ## Additional Features
 
