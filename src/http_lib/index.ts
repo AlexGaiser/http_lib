@@ -11,9 +11,9 @@ const config: RequestConfig = {
     bool: true,
   },
   headers: {
-    Accept: 'application/json',
+    Accept: '*/*',
     'Content-Type': 'application/json',
-    Host: 'localhost',
+    Host: 'www.google.com',
     'Content-Length': 28,
     'Accept-Encoding': 'gzip, deflate, br',
     'User-Agent':

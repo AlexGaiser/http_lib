@@ -1,3 +1,4 @@
+import { RSA_NO_PADDING } from 'constants';
 import { Socket, SocketConnectOpts } from 'net';
 import { json } from 'stream/consumers';
 import { HTTPConfig } from '../http_client/types';
@@ -33,6 +34,7 @@ export function dispatchHTTPRequest(httpConfig) {
   write(message);
 
   onSocketData((data) => {
+    console.log(data.toString());
     const [headerString, body] = getHeaderAndBodyString(
       data.toString(),
     );
@@ -43,8 +45,13 @@ export function dispatchHTTPRequest(httpConfig) {
         contentLength: headersObj.headers['Content-Length'],
       };
     }
-    if (body) {
-      res.data = JSON.parse(body);
+    if (res.headers && body) {
+      const contentType = res.headers['Content-Type'];
+      if (contentType === 'application/json') {
+        res.data = JSON.parse(body);
+      } else if (contentType === 'text/html; charset=UTF-8') {
+        res.data = body;
+      }
       if (body.length === res.contentLength) {
         endConnection();
       }
