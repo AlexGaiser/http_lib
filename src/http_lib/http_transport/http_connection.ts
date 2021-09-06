@@ -34,7 +34,6 @@ export function dispatchHTTPRequest(httpConfig) {
   write(message);
 
   onSocketData((data) => {
-    console.log(data.toString());
     const [headerString, body] = getHeaderAndBodyString(
       data.toString(),
     );
