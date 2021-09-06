@@ -12,8 +12,6 @@ In addition, this is an exercise in creating an easy-to-use HTTP client. The cli
 
 In reality, Node.js implements a large part of the low-level logic related to HTTP in C/C++ code and many of the features I have implemented here will never need to be touched in the normal course of Node.js development. 
 
-
-
 ## Requirements:
 
 To be a fully featured HTTP client this project must: 
@@ -27,7 +25,30 @@ To be a fully featured HTTP client this project must:
 7. Receive the response from the target HTTP server
 8. Close the connection when the server is done sending data
 
-### Request syntax
+## How to Use
+
+If you are interested in seeing the http_lib in action simply: 
+
+**Clone the repository:**
+
+```bash
+git clone https://github.com/AlexGaiser/http_lib.git
+```
+
+**Build and start the test server:**
+```bash
+npm run start:dev
+```
+
+**Send the test request from a separate terminal**
+```bash
+npm run send-req
+
+```
+
+You should see the proper response in the console!
+
+## Request syntax
 
 A client sends  _request messages_  to the server, which consist of:
 
@@ -38,10 +59,10 @@ A client sends  _request messages_  to the server, which consist of:
 
 In the HTTP/1.1 protocol, all header fields except  _Host_  are optional.
 
-### Anatomy of an HTTP Request
+## Anatomy of an HTTP Request
 ![anatomy of an http request](https://developer.mozilla.org/en-US/docs/Web/HTTP/Messages/http_response_headers3.png)
 
-### Additional Features
+## Additional Features
 
 This repository also includes sources I used to learn more about how Node.js interacts with HTTP and TCP/IP sockets. It includes sources that explain how/where/why Node.js dives into the C/C++ layer.
 
@@ -50,7 +71,7 @@ I have included the test servers I created while developing this project. They w
 I used an Express server to validate the HTTP requests sent by the client.
 
 
-### What I learned
+## What I learned
 
 As an extra challenge, I have implemented as much of this project as possible using a purely functional approach. Mutations of state are kept to a minimum and functions are kept small and single purpose wherever possible. This was especially challenging do to the asynchronous nature of sending/receiving information. But it was a lot of fun. I plan on refactoring large portions of this code base in the future to see how easy it is to modify code using this approach.
 
