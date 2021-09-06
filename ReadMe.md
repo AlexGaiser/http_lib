@@ -2,13 +2,11 @@
 
 ## Description
 
-The purpose of this repository is to create a basic http client at low a level as possible in Node.js. I found the subject extremely interesting, and I have made this repository public so that anyone else who is interested in the subject might find it useful.
+The purpose of this repository is to create a basic http client at as low a level as possible in Node.js. My goal in building this project was to understand how Node works under the hood and how many of the abstractions we take for granted when making HTTP network calls actually work. I found the subject extremely interesting, but it was a challenge to find useful sources of information. I have made this repository public so that anyone else who is interested in the subject will have easy access to a collection of articles and examples.
 
-Because of the way Node.js has been designed, there is a limit to how low we can go in this implementation. Some features (such as opening a TCP connection) are natively implemented in C/C++. This project is an exercise in creating an HTTP client starting at as low a level as possible in Node, relying on as few of the native Node.js abstractions as possible.
+In addition, this is an exercise in creating an easy-to-use HTTP client using functional programming principles. The client interface takes inspiration from Axios.
 
-This is strictly an academic exercise for the purpose of understanding how Node works under the hood and how many of the abstractions we take for granted when making HTTP network calls actually work. 
-
-In addition, this is an exercise in creating an easy-to-use HTTP client. The client interface takes inspiration from Axios.
+Because of the way Node.js has been designed, there is a limit to how low we can go in this implementation. Some features (such as opening a TCP connection) are natively implemented in C/C++. This project is an exercise in creating an HTTP client relying on as few of the native Node.js abstractions as possible. 
 
 In reality, Node.js implements a large part of the low-level logic related to HTTP in C/C++ code and many of the features I have implemented here will never need to be touched in the normal course of Node.js development. 
 
