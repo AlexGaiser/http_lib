@@ -27,7 +27,7 @@ export function dispatchHTTPRequest(httpConfig) {
   const conn = createHTTPConnection(httpConfig);
   const { onSocketClose, onSocketData, endConnection } =
     getSocketEventFuncs(conn);
-  let res: any = {};
+  let res: any = { data: '' };
   const write = writeToSocket(conn);
 
   const message = buildRawHTTPRequest(httpConfig);
@@ -47,6 +47,16 @@ export function dispatchHTTPRequest(httpConfig) {
       };
     }
     if (res.headers && body) {
+      if (
+        res.headers['Transfer-Encoding'] &&
+        res.headers['Transfer-Encoding'] === 'chunked'
+      ) {
+        console.log(
+          'not set up to handle chunked encoding yet sorry',
+        );
+        res.data += body;
+        return;
+      }
       const contentType = res.headers['Content-Type'];
       res.data = handleContentType(contentType, body);
 

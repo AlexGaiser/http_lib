@@ -107,7 +107,7 @@ export function buildRawHTTPRequest(config: HTTPConfig): string {
 function fillInHeaders(config: HTTPConfig, data: string) {
   const fillInHeaders = { ...config.headers };
   if (!fillInHeaders['Content-Length']) {
-    fillInHeaders['Content-Length'] = data.length;
+    fillInHeaders['Content-Length'] = data ? data.length : 0;
   }
   if (!fillInHeaders['Host']) {
     fillInHeaders['Host'] = config.host;
