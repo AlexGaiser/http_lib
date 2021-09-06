@@ -10,9 +10,11 @@ Because of the way Node.js has been designed, there is a limit to how low we can
 
 In reality, Node.js implements a large part of the low-level logic related to HTTP in C/C++ code and many of the features I have implemented here will never need to be touched in the normal course of Node.js development. 
 
+## Table of Contents
 
 - [HTTP Library](#http-library)
   - [Description](#description)
+  - [Table of Contents](#table-of-contents)
   - [Requirements:](#requirements)
   - [How to Use](#how-to-use)
   - [Request syntax](#request-syntax)
