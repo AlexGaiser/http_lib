@@ -14,7 +14,7 @@ In reality, Node.js implements a large part of the low-level logic related to HT
 
 ## Requirements:
 
-To create an HTTP request the client must: 
+To be a fully featured HTTP client this project must: 
 
 1. Take a user's configuration
 2. Use that configuration to create the HTTP headers
@@ -37,9 +37,7 @@ A client sends  _request messages_  to the server, which consist of:
 In the HTTP/1.1 protocol, all header fields except  _Host_  are optional.
 
 **Anatomy of an HTTP Request:**
-```
 
-```
 
 ## Additional Features
 
@@ -47,4 +45,11 @@ This repository also includes sources I used to learn more about how Node.js int
 
 I have included the test servers I created while developing this project. They were useful for understanding the different types of protocols as well as how the socket connection layer works. 
 
-I used an Express server to validate the HTTP requests sent by the client. 
+I used an Express server to validate the HTTP requests sent by the client.
+
+
+## What I learned
+
+As an extra challenge, I have implemented as much of this project as possible using a purely functional approach. Mutations of state are kept to a minimum and functions are kept small and single purpose wherever possible. This was especially challenging do to the asynchronous nature of sending/receiving information. But it was a lot of fun. I plan on refactoring large portions of this code base in the future to see how easy it is to modify code using this approach.
+
+It was interesting because many of the implementations I learned from had a very different approach, (most of them having been written several years ago). It was a good exercise to translate them into a different style.

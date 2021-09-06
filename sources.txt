@@ -19,3 +19,9 @@ https://github.com/nodejs/node/tree/v16.7.0/lib
 
 HTTP Server
 https://www.codementor.io/@ziad-saab/let-s-code-a-web-server-from-scratch-with-nodejs-streams-h4uc9utji
+
+Helpful Implementations
+https://github.com/axios/axios
+https://github.com/axios/lib/core/dispatchRequest.js
+https://github.com/nodejs/node/blob/master/lib/_http_client.js
+https://github.com/nodejs/node/blob/master/lib/_http_outgoing.js
