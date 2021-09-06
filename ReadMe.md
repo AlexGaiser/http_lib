@@ -25,7 +25,7 @@ To be a fully featured HTTP client this project must:
 
 ## How to Use
 
-If you are interested in seeing the http_lib in action simply: 
+If you are interested in seeing the `http_lib` in action simply: 
 
 **Clone the repository:**
 
